@@ -1,0 +1,14 @@
+#intro {
+    height: calc(100vh - 5rem);
+    width: 100vw;
+    max-width: 100rem;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.btnImg {
+    object-fit: cover;
+    margin-right: 0.5rem;
+    height: 2rem;
+    width: 2rem;
+}
