@@ -9,6 +9,39 @@
 .btnImg {
     object-fit: cover;
     margin-right: 0.5rem;
-    height: 2rem;
-    width: 2rem;
+    height: 1rem;
+    width: 1rem;
+}
+
+.introContent {
+    height: 100vh;
+    width: 100vw;
+    padding: 2rem;
+    font-size: 3rem;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hello {
+    font-size: 2rem;
+    font-weight: 200;
+}
+
+.introName {
+    color: blue
+}
+
+.introParagraph {
+    font-size: medium;
+    font-weight: 200;
+}
+
+.btn {
+    background: white;
+    margin: 1rem 0;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 2rem;
 }
