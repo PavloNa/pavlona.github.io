@@ -2,8 +2,20 @@
     height: calc(100vh - 7rem);
     width: 100vw;
     max-width: 100rem;
-    margin: 0 auto;
+    margin: -5rem auto;
     overflow: hidden;
+    position: relative;
+}
+
+.backImg {
+    position: absolute;
+    top: 10rem;
+    right: 5rem;
+    height: 30rem;
+    width: 30rem;
+    border-radius: 100%;
+    z-index: -1;
+    object-fit: cover;
 }
 
 .btn {
@@ -31,7 +43,7 @@
 
 .hello {
     font-size: 2rem;
-    font-weight: 200;
+    font-weight: 300;
 }
 
 .introName {
@@ -49,4 +61,37 @@
     padding: 0.75rem 2rem;
     border: none;
     border-radius: 2rem;
+    transition: 0.3s;
+}
+
+.btn:hover{
+    background: rgb(204, 204, 204);
+}
+
+@media screen and (max-width:600px) {
+    #intro {
+        height: calc(100vh - 7rem);
+        width: 100vw;
+        max-width: 100rem;
+        margin: -5rem 0;
+        overflow: hidden;
+        position: relative;
+    }
+    .backImg {
+        opacity: 0;
+    }
+    .introParagraph {
+        font-weight: 400;
+        font-size: small;
+    }
+    .introText{
+        font-size: 2rem;
+    }
+    .hello{
+        font-size: 1.5rem;
+    }
+    .changingText {
+        font-size: 1.3rem;
+        margin: 0;
+    }
 }

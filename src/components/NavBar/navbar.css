@@ -21,6 +21,7 @@
 .desktopMenuListItem {
     margin: 1rem;
     cursor: pointer;
+    transition: 0.1s;
 }
 
 .desktopMenuListItem:hover {
@@ -45,4 +46,15 @@
     justify-content: center;
     padding: 0.5rem 2rem;
     border-radius: 2rem;
+    transition: 0.3s;
+}
+
+.desktopMenuBtn:hover{
+    background: rgb(204, 204, 204);
+}
+
+@media screen and (max-width:600px) {
+    .desktopMenuBtn {
+        opacity: 0;
+    }
 }
