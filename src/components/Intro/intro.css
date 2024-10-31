@@ -1,9 +1,14 @@
 #intro {
-    height: calc(100vh - 5rem);
+    height: calc(100vh - 7rem);
     width: 100vw;
     max-width: 100rem;
     margin: 0 auto;
     overflow: hidden;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
 }
 
 .btnImg {
@@ -30,7 +35,7 @@
 }
 
 .introName {
-    color: blue
+    color: rgb(111, 0, 255)
 }
 
 .introParagraph {

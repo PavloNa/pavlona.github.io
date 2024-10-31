@@ -1,5 +1,5 @@
 .navbar {
-    height: 5rem;
+    height: 7rem;
     width: 100vw;
     max-width: 75rem;
     margin: 1rem auto;
@@ -24,9 +24,9 @@
 }
 
 .desktopMenuListItem:hover {
-    color: darkcyan;
+    color: rgb(99, 0, 212);
     padding-bottom: 0.5rem;
-    border-bottom: 3px solid darkcyan;
+    border-bottom: 3px solid rgb(99, 0, 212);
 }
 
 .desktopMenuImg {
@@ -40,7 +40,7 @@
     background: white;
     color: black;
     border: none;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 0.5rem 2rem;
