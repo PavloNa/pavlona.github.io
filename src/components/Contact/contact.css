@@ -85,6 +85,7 @@
 .submitBtn {
     background: white;
     border: none;
+    color: black;
     padding: 0.75rem 3.5rem;
     margin: 2rem;
     border-radius: 0.5rem;
