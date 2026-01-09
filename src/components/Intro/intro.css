@@ -1,6 +1,6 @@
 #intro {
     height: calc(100vh - 7rem);
-    width: 100vw;
+    width: 100%;
     max-width: 100rem;
     margin: -5rem auto;
     overflow: hidden;
@@ -48,6 +48,23 @@
 
 .introName {
     color: rgb(111, 0, 255)
+}
+
+.rainbowText {
+    background: linear-gradient(90deg, #ff004c, #ff8a00, #ffd500, #2bff00, #00e6ff, #004cff, #a200ff, #ff004c);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: rainbow 6s linear infinite;
+    font-weight: 700;
+}
+
+@keyframes rainbow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .introParagraph {
