@@ -16,23 +16,41 @@
     border-radius: 100%;
     z-index: -1;
     object-fit: cover;
+    opacity: 1;
+    transition: opacity 300ms ease;
+}
+
+@media (max-width: 1400px) {
+    .backImg { opacity: 0.25; }
+}
+
+@media (max-width: 900px) {
+    .backImg { opacity: 0.15; }
+}
+
+@media (max-width: 700px) {
+    .backImg { opacity: 0.0; }
 }
 
 .btn {
     display: inline-flex;
     align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2.25rem;
+    font-size: 1rem;
+    border-radius: 2rem;
+    text-decoration: none;
 }
 
 .btnImg {
     object-fit: cover;
-    margin-right: 0.5rem;
-    height: 1rem;
-    width: 1rem;
+    height: 1.25rem;
+    width: 1.25rem;
 }
 
 .introContent {
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     padding: 2rem;
     font-size: 3rem;
     font-weight: 700;
@@ -75,14 +93,14 @@
 .btn {
     background: white;
     margin: 1rem 0;
-    padding: 0.75rem 2rem;
     border: none;
-    border-radius: 2rem;
-    transition: 0.3s;
+    transition: 0.18s ease;
+    color: #000;
+    align-self: flex-start;
 }
 
 .btn:hover{
-    background: rgb(204, 204, 204);
+    background: rgb(230, 230, 230);
 }
 
 @media screen and (max-width:600px) {
