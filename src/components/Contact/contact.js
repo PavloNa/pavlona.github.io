@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import './contact.css'
 import sky from '../../assets/sky.png'
 import viqal from '../../assets/viqal.png'
+import expedia from '../../assets/expedia.webp'
 import emailjs from '@emailjs/browser';
 
 const Contact = () => {
@@ -23,6 +24,7 @@ const Contact = () => {
             },
             (error) => {
               console.log('FAILED...', error.text);
+              alert('Email failed to send. Please try again later.')
             },
           );
       };
@@ -30,10 +32,10 @@ const Contact = () => {
   return (
     <section id='contactPage'>
         <div id='clients'>
-            <h1 className='clientHeader' >Work Experience</h1>
-            <p className='clientParagraph'>I have had the opportunity to worth with the following company:</p>
+            <h1 className='sectionTitle'>Work Experience</h1>
+            <p className='sectionLead'>I have had the opportunity to work with the following companies:</p>
             <div className='experiences'>
-                <div className='experience'>
+                <div className='experience card'>
                     <img src={sky} alt='' className='clientImg'></img>
                     <div className='experienceText'>
                         <h2>Sky UK, Associate Developer</h2>
@@ -44,7 +46,6 @@ const Contact = () => {
                             full-stack applications, and legacy codebases, focusing on improving reliability,
                             performance, and deployment efficiency across teams.
                         </p>
-                        <br/>
                         <p className='skills'>Skills:</p>
                         <ul>
                             <li>Python</li>
@@ -60,18 +61,17 @@ const Contact = () => {
                         </ul>
                     </div>
                 </div>
-                <div className='experience'>
+                <div className='experience card'>
                     <img src={viqal} alt='' className='clientImg'></img>
                     <div className='experienceText'>
                         <h2>Viqal, Backend Developer</h2>
-                        <h3>September 2025 - Present</h3>
+                        <h3>September 2025 – April 2026</h3>
                         <p>
-                            As a Backend Developer at Viqal, I design and maintain scalable backend systems and
+                            As a Backend Developer at Viqal, I designed and maintained scalable backend systems and
                             cloud infrastructure. I built and deployed CI/CD pipelines on AWS, developed
                             Python-based services and PostgreSQL schemas, and worked closely with leadership to
                             modernize system architecture, improve security, and support enterprise-scale growth.
                         </p>
-                        <br/>
                         <p className='skills'>Skills:</p>
                         <ul>
                             <li>Python Backend Development</li>
@@ -86,19 +86,41 @@ const Contact = () => {
                         </ul>
                     </div>
                 </div>
+                <div className='experience card'>
+                    <img src={expedia} alt='' className='clientImg'></img>
+                    <div className='experienceText'>
+                        <h2>Expedia Group, Software Development Engineer I</h2>
+                        <h3>April 2026 – Present</h3>
+                        <p>
+                            As a Software Development Engineer at Expedia Group in Rome, I led the architecture for a
+                            dynamic content-personalization feature on a service handling 21,000+ requests per minute,
+                            scoping work across three microservices. I built a fault-tolerant gRPC client in
+                            Kotlin/Spring Boot, migrated a legacy React component to a config-driven module shipped via
+                            A/B testing across 60+ locales, and fixed production and CI/CD reliability issues.
+                        </p>
+                        <p className='skills'>Skills:</p>
+                        <ul>
+                            <li>Kotlin & Spring Boot</li>
+                            <li>gRPC & Microservices</li>
+                            <li>Circuit-Breaker Fault Tolerance</li>
+                            <li>System Architecture</li>
+                            <li>React</li>
+                            <li>A/B Testing</li>
+                            <li>Internationalization (60+ Locales)</li>
+                            <li>Testing (97%+ Coverage)</li>
+                            <li>CI/CD Reliability</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
         <div id='contact'>
-            <h1 className='contactTitle'>Contact me</h1>
+            <h1 className='sectionTitle'>Contact me</h1>
             <form ref={form} className='contactForm' onSubmit={sendEmail}>
-                <input type='text' className='name' name='name' placeholder='Your Name'/>
-                <input type='email' className='email' name='email' placeholder='Your Email'/>
-                <textarea className='msg' name='message' rows='5' placeholder='Your Message'></textarea>
-                <button type='submit' value='Send' className='submitBtn'>Submit</button>
-                <div className='links'>
-                    <img src='' alt='' className='link'></img>
-                    <img src='' alt='' className='link'></img>
-                </div>
+                <input type='text' className='name' name='name' placeholder='Your Name' required/>
+                <input type='email' className='email' name='email' placeholder='Your Email' required/>
+                <textarea className='msg' name='message' rows='5' placeholder='Your Message' required></textarea>
+                <button type='submit' value='Send' className='btn btnPrimary submitBtn'>Submit</button>
             </form>
         </div>
     </section>

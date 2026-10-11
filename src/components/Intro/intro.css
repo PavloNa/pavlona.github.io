@@ -1,25 +1,106 @@
 #intro {
-    height: calc(100vh - 7rem);
-    width: 100%;
-    max-width: 100rem;
-    margin: -5rem auto;
-    overflow: hidden;
     position: relative;
+    min-height: calc(100svh - var(--nav-height));
+    display: flex;
+    align-items: center;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.introContent {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 40rem;
+}
+
+/* staggered entrance on first load */
+.introContent > * {
+    animation: rise 600ms var(--ease-out) both;
+}
+.introContent > :nth-child(2) { animation-delay: 60ms; }
+.introContent > :nth-child(3) { animation-delay: 120ms; }
+.introContent > :nth-child(4) { animation-delay: 180ms; }
+.introContent > :nth-child(5) { animation-delay: 240ms; }
+
+@keyframes rise {
+    from { opacity: 0; transform: translateY(12px); }
+}
+
+.hello {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    font-weight: 300;
+    color: var(--muted);
+}
+
+.introText {
+    font-size: clamp(2.25rem, 7vw, 3.75rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+}
+
+.introName {
+    color: var(--accent-text);
+}
+
+.changingText {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: clamp(1.25rem, 3.5vw, 2rem);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--muted);
+}
+
+.typed-cursor {
+    color: var(--accent-text);
+}
+
+.introParagraph {
+    color: var(--muted);
+    margin-bottom: 0.75rem;
+}
+
+.rainbowText {
+    background: linear-gradient(90deg, var(--accent-text), var(--accent-2), var(--accent-text));
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: shimmer 8s linear infinite;
+    font-weight: 600;
+}
+
+@keyframes shimmer {
+    to { background-position: 200% 0; }
+}
+
+#intro .btn {
+    margin-top: 1rem;
+    padding: 0.9rem 2rem;
+    font-size: 1rem;
 }
 
 .backImg {
     position: absolute;
-    top: 10rem;
-    right: 5rem;
-    height: 30rem;
-    width: 30rem;
-    border-radius: 100%;
-    z-index: -1;
+    top: 50%;
+    right: 1.5rem;
+    width: min(28rem, 40vw);
+    aspect-ratio: 1;
+    transform: translateY(-50%);
+    border-radius: 50%;
     object-fit: cover;
-    opacity: 1;
+    border: 1px solid var(--border-strong);
+    box-shadow: 0 0 80px rgba(139, 92, 246, 0.25);
     transition: opacity 300ms ease;
 }
 
+/* image fades back as the screen narrows so text stays readable */
 @media (max-width: 1400px) {
     .backImg { opacity: 0.25; }
 }
@@ -29,104 +110,5 @@
 }
 
 @media (max-width: 700px) {
-    .backImg { opacity: 0.0; }
-}
-
-.btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 1rem 2.25rem;
-    font-size: 1rem;
-    border-radius: 2rem;
-    text-decoration: none;
-}
-
-.btnImg {
-    object-fit: cover;
-    height: 1.25rem;
-    width: 1.25rem;
-}
-
-.introContent {
-    height: 100vh;
-    width: 100%;
-    padding: 2rem;
-    font-size: 3rem;
-    font-weight: 700;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.hello {
-    font-size: 2rem;
-    font-weight: 300;
-}
-
-.introName {
-    color: rgb(111, 0, 255)
-}
-
-.rainbowText {
-    background: linear-gradient(90deg, #ff004c, #ff8a00, #ffd500, #2bff00, #00e6ff, #004cff, #a200ff, #ff004c);
-    background-size: 400% 400%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-    animation: rainbow 6s linear infinite;
-    font-weight: 700;
-}
-
-@keyframes rainbow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-.introParagraph {
-    font-size: medium;
-    font-weight: 400;
-}
-
-.btn {
-    background: white;
-    margin: 1rem 0;
-    border: none;
-    transition: 0.18s ease;
-    color: #000;
-    align-self: flex-start;
-}
-
-.btn:hover{
-    background: rgb(230, 230, 230);
-}
-
-@media screen and (max-width:600px) {
-    #intro {
-        height: calc(100vh - 7rem);
-        width: 100vw;
-        max-width: 100rem;
-        margin: -5rem 0;
-        overflow: hidden;
-        position: relative;
-    }
-    .backImg {
-        opacity: 0;
-    }
-    .introParagraph {
-        font-weight: 400;
-        font-size: small;
-    }
-    .introText{
-        font-size: 2rem;
-    }
-    .hello{
-        font-size: 1.5rem;
-    }
-    .changingText {
-        font-size: 1.3rem;
-        margin: 0;
-    }
+    .backImg { opacity: 0; }
 }

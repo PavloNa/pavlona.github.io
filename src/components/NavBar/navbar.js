@@ -16,13 +16,15 @@ const NavBar = () => {
             <Link activeClass='active' to='skills' spy={true} smooth={true} offset={-70} duration={500} className='desktopMenuListItem'>About</Link>
             <Link activeClass='active' to='clients' spy={true} smooth={true} offset={-100} duration={500} className='desktopMenuListItem'>Experience</Link>
         </div>
-        <button className='desktopMenuBtn' onClick={()=> {
+        <button className='btn desktopMenuBtn' onClick={()=> {
           document.getElementById('contact').scrollIntoView({behavior: 'smooth'});
         }}>
-            <img src={contactme} alt='' className='desktopMenuImg' />Contact me</button>
+            <img src={contactme} alt='' className='btnIcon' />Contact me</button>
     
-        <img src={menu} alt='Menu' className='mobMenu' onClick={() => {setShowMenu(!showMenu)}}/>
-        <div className='navMenu' style={{display: showMenu? 'flex':'none'}}>
+        <button className='mobMenu' aria-label='Menu' aria-expanded={showMenu} onClick={() => {setShowMenu(!showMenu)}}>
+            <img src={menu} alt='' />
+        </button>
+        <div className={showMenu ? 'navMenu open' : 'navMenu'}>
             <Link activeClass='active' to='intro' spy={true} smooth={true} offset={-100} duration={500} className='listItem' onClick={() => {setShowMenu(false)}}>Home</Link>
             <Link activeClass='active' to='skills' spy={true} smooth={true} offset={-70} duration={500} className='listItem' onClick={() => {setShowMenu(false)}}>About</Link>
             <Link activeClass='active' to='clients' spy={true} smooth={true} offset={-100} duration={500} className='listItem' onClick={() => {setShowMenu(false)}}>Experience</Link>
