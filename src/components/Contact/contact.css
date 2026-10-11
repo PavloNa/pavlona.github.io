@@ -1,8 +1,135 @@
-.experiences {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 5rem;
+/* Timeline: mobile-first (rail on the left), alternating sides from 900px */
+.timeline {
+    position: relative;
+    max-width: 64rem;
+    margin: 0 auto 6rem;
+}
+
+.timelineRail {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 7px;
+    width: 2px;
+    border-radius: 2px;
+    background: var(--border);
+}
+
+/* scaled by Contact's scroll handler; transform only, so no layout work per frame */
+.timelineFill {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(var(--accent-text), var(--accent-2));
+    box-shadow: 0 0 12px rgba(167, 139, 250, 0.5);
+    transform: scaleY(0);
+    transform-origin: top;
+}
+
+.timelineList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.timelineItem {
+    position: relative;
+    padding-left: 2.5rem;
+}
+
+.timelineDot {
+    position: absolute;
+    top: 2rem;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--border-strong);
+    transition: background-color 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
+}
+
+.passed .timelineDot {
+    background: var(--accent-text);
+    border-color: var(--accent-text);
+    box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.15), 0 0 16px rgba(167, 139, 250, 0.6);
+}
+
+/* current role: a ring keeps pinging out of the dot */
+.current .timelineDot::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-text);
+    animation: ping 2s var(--ease-out) infinite;
+}
+
+@keyframes ping {
+    from { transform: scale(1); opacity: 0.8; }
+    to { transform: scale(2.6); opacity: 0; }
+}
+
+.timelineDate {
+    display: none;
+}
+
+.experienceDates {
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+@media (min-width: 900px) {
+    .timelineRail {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .timelineItem {
+        width: 50%;
+        padding: 0 3rem 0 0;
+    }
+
+    .timelineItem:nth-child(even) {
+        margin-left: 50%;
+        padding: 0 0 0 3rem;
+    }
+
+    .timelineDot {
+        left: auto;
+        right: -8px;
+    }
+
+    .timelineItem:nth-child(even) .timelineDot {
+        left: -8px;
+        right: auto;
+    }
+
+    /* date sits across the rail from its card */
+    .timelineDate {
+        display: block;
+        position: absolute;
+        top: 1.75rem;
+        left: calc(100% + 3rem);
+        white-space: nowrap;
+        font-weight: 500;
+        color: var(--muted);
+        transition: color 300ms ease;
+    }
+
+    .timelineItem:nth-child(even) .timelineDate {
+        left: auto;
+        right: calc(100% + 3rem);
+    }
+
+    .passed .timelineDate {
+        color: var(--text);
+    }
+
+    .mobileOnly {
+        display: none;
+    }
 }
 
 .experience {
@@ -10,6 +137,13 @@
     flex-direction: column;
     gap: 1rem;
     padding: 1.75rem;
+}
+
+.experienceHead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
 }
 
 .clientImg {
@@ -20,6 +154,18 @@
     object-position: left;
 }
 
+.nowBadge {
+    padding: 0.15rem 0.65rem;
+    border-radius: 999px;
+    border: 1px solid rgba(167, 139, 250, 0.35);
+    background: rgba(139, 92, 246, 0.15);
+    color: var(--accent-text);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
 .experienceText {
     display: flex;
     flex-direction: column;
@@ -27,14 +173,15 @@
 }
 
 .experienceText > h2 {
-    font-size: 1.15rem;
+    font-size: 1.3rem;
     font-weight: 600;
-    line-height: 1.3;
-    letter-spacing: -0.01em;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
 }
 
 .experienceText > h3 {
-    font-size: 0.85rem;
+    margin-top: -0.5rem;
+    font-size: 0.95rem;
     font-weight: 500;
     color: var(--accent-text);
 }

@@ -1,6 +1,5 @@
 import React from 'react'
 import './Projects.css'
-import demo from '../../assets/demo.png'
 import github from '../../assets/github.png'
 import minutes_generator from '../../assets/minutes_generator.png'
 import hugging from '../../assets/hugging.png'
@@ -22,9 +21,6 @@ const Projects = () => {
               <div className="projectButtons">
                 <a className="btn" href="https://github.com/PavloNa/Minutes-Generator/tree/main" target="_blank" rel="noreferrer">
                   <img src={github} alt="github" className="btnIcon" /> GitHub
-                </a>
-                <a className="btn" href="https://minutes.pavlonaz.com" target="_blank" rel="noreferrer">
-                <img src={demo} alt="" className="btnIcon" />Demo
                 </a>
               </div>
             </div>
