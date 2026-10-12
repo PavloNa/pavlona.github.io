@@ -27,4 +27,5 @@ Consistency. That's the key I am missing, I want stability, but I want risky adv
 Going forward I believe I need a realistic outcome. Something that is based in reality, rather then other people's fantasies. I want to program more, but is it what I really want? I guess the future will tell, I know I will embark in many different endeavours, businesses, start ideas, see that another company did it and quit. But I also know that if something works, even for a slight second I will keep going on it until I scale it.
 
 Thank you for reading this,
+
 This has been my freedom paradigm.
