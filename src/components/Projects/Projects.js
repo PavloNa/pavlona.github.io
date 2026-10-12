@@ -6,53 +6,55 @@ import hugging from '../../assets/hugging.png'
 import medner from '../../assets/medner.png'
 import hangman from '../../assets/hangman.png'
 
+// Add a project by adding an entry here
+const projects = [
+  {
+    title: 'Minutes Generator',
+    image: minutes_generator,
+    text: 'Generates PDF meeting minutes from a transcript or audio recording. Runs on your own API keys.',
+    links: [{ label: 'Source on GitHub', icon: github, href: 'https://github.com/PavloNa/Minutes-Generator/tree/main' }],
+  },
+  {
+    title: 'MedNER',
+    note: 'final year project',
+    image: medner,
+    text: 'Fine-tuned spaCy models for medical named entity recognition, to help hospitals categorise large amounts of clinical text.',
+    links: [{ label: 'Models on Hugging Face', icon: hugging, href: 'https://huggingface.co/pavlopt' }],
+  },
+  {
+    title: 'ARM Assembly Hangman',
+    image: hangman,
+    text: 'Hangman written in ARM assembly. My first assembly project.',
+    links: [{ label: 'Source on GitHub', icon: github, href: 'https://github.com/PavloNa/ARM-Assembly-Hangman/tree/main' }],
+  },
+]
+
 const Projects = () => {
   return (
     <section id='projects'>
-        <span className="sectionTitle">Projects</span>
-        <span className="sectionLead">Here are some of my projects. </span>
-        <div className="projectsGrid">
-          {/* Copy-paste this block for each project */}
-          <article className="projectCard card">
-            <img src={minutes_generator} alt="preview" className="projectImage" />
-            <div className="projectContent">
-              <h3 className="projectTitle">Minutes Generator</h3>
-              <p className="projectDesc">This project allows you to generate PDF templates based on meeting transcripts/audio recordings. You can set it up using your own API keys.</p>
-              <div className="projectButtons">
-                <a className="btn" href="https://github.com/PavloNa/Minutes-Generator/tree/main" target="_blank" rel="noreferrer">
-                  <img src={github} alt="github" className="btnIcon" /> GitHub
-                </a>
+        <header className='sectionHead'>
+          <h2 className='sectionTitle'>Projects</h2>
+          <p className='comment'>side projects and university work</p>
+        </header>
+        <ul className='projectList'>
+          {projects.map((p) => (
+            <li key={p.title} className='projectCard card'>
+              <img src={p.image} alt='' className='projectImage' />
+              <div className='projectContent'>
+                <h3 className='projectTitle'>{p.title}</h3>
+                {p.note && <p className='comment'>{p.note}</p>}
+                <p className='projectDesc'>{p.text}</p>
+                <div className='projectButtons'>
+                  {p.links.map((link) => (
+                    <a key={link.href} className='btn' href={link.href} target='_blank' rel='noreferrer'>
+                      <img src={link.icon} alt='' className='btnIcon' /> {link.label}
+                    </a>
+                  ))}
+                </div>
               </div>
-            </div>
-          </article>
-            <article className="projectCard card">
-            <img src={medner} alt="preview" className="projectImage" />
-            <div className="projectContent">
-              <h3 className="projectTitle">MedNer-FYP</h3>
-              <p className="projectDesc">University Final Year Project 🎓. Medical Named Entity Recognition fine-tuned models 🧠 using Spacy to help hospitals categorise their vast amounts of data📝.</p>
-              <div className="projectButtons">
-                <a className="btn" href="https://github.com/PavloNa/Minutes-Generator/tree/main" target="_blank" rel="noreferrer">
-                  <img src={github} alt="github" className="btnIcon" /> GitHub
-                </a>
-                <a className="btn" href="https://huggingface.co/pavlopt" target="_blank" rel="noreferrer">
-                  <img src={hugging} alt="huggingface" className="btnIcon" /> HFace
-                </a>
-              </div>
-            </div>
-          </article>
-            <article className="projectCard card">
-            <img src={hangman} alt="preview" className="projectImage" />
-            <div className="projectContent">
-              <h3 className="projectTitle">ARM Assembly Hangman</h3>
-              <p className="projectDesc">Simple hangman game coded in ARM Assembly 💻. First project in assembly 📈.</p>
-              <div className="projectButtons">
-                <a className="btn" href="https://github.com/PavloNa/ARM-Assembly-Hangman/tree/main" target="_blank" rel="noreferrer">
-                  <img src={github} alt="github" className="btnIcon" /> GitHub
-                </a>
-              </div>
-            </div>
-          </article>
-        </div>
+            </li>
+          ))}
+        </ul>
     </section>
   )
 }

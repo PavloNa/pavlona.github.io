@@ -2,14 +2,23 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="./logo.png" />
+    <link rel="icon" href="%PUBLIC_URL%/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Pavlo's Portfolio"/>
-    <title>Pavlo Portfolio</title>
-    <link rel="stylesheet" href="./style.css" />
+    <meta name="description" content="Pavlo Nazarchuk, software engineer. Backend services in Kotlin and Python."/>
+    <title>Pavlo Nazarchuk · Software Engineer</title>
+    <link rel="stylesheet" href="%PUBLIC_URL%/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+      // GitHub Pages can't route /blog/... itself: 404.html sends it here as /?/blog/..., and this puts the path back
+      (function (l) {
+        if (l.search[1] === '/') {
+          var path = l.search.slice(1).split('&').map(function (s) { return s.replace(/~and~/g, '&'); }).join('?');
+          window.history.replaceState(null, null, l.pathname.slice(0, -1) + path + l.hash);
+        }
+      }(window.location));
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

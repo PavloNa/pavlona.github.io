@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './contact.css'
 import sky from '../../assets/sky.png'
 import viqal from '../../assets/viqal.png'
@@ -10,7 +10,7 @@ const experiences = [
     {
         company: 'Expedia Group',
         role: 'Software Development Engineer I',
-        dates: 'April 2026 – Present',
+        dates: 'Apr 2026 to now',
         logo: expedia,
         current: true,
         text: `As a Software Development Engineer at Expedia Group in Rome, I led the architecture for a
@@ -24,7 +24,7 @@ const experiences = [
     {
         company: 'Viqal',
         role: 'Backend Developer',
-        dates: 'September 2025 – April 2026',
+        dates: 'Sep 2025 to Apr 2026',
         logo: viqal,
         text: `As a Backend Developer at Viqal, I designed and maintained scalable backend systems and
             cloud infrastructure. I built and deployed CI/CD pipelines on AWS, developed
@@ -37,7 +37,7 @@ const experiences = [
     {
         company: 'Sky UK',
         role: 'Associate Developer',
-        dates: 'July 2022 – July 2023',
+        dates: 'Jul 2022 to Jul 2023',
         logo: sky,
         text: `As an Associate Developer at Sky UK, I worked on building and maintaining automation
             and CI/CD tooling for large-scale systems. I contributed to containerized services,
@@ -48,10 +48,17 @@ const experiences = [
     },
 ];
 
+const statusText = {
+    sending: 'Sending…',
+    sent: 'Message sent. Thanks!',
+    error: 'Could not send right now. Try again in a minute.',
+};
+
 const Contact = () => {
     const form = useRef();
     const timeline = useRef();
     const fill = useRef();
+    const [status, setStatus] = useState('idle');
 
     // Fill the timeline rail as it scrolls past 60% of the viewport, lighting each dot it reaches
     useEffect(() => {
@@ -79,70 +86,86 @@ const Contact = () => {
 
     const sendEmail = (e) => {
         e.preventDefault();
-    
+        setStatus('sending');
         emailjs
           .sendForm('service_g3xylb5', 'template_ebxtzbf', form.current, {
             publicKey: 'TA8FfiV0DXaGs_W28',
           })
           .then(
             () => {
-              console.log('SUCCESS!');
-              e.target.reset()
-              alert('Email sent!')
-              document.getElementById('intro').scrollIntoView({behavior: 'smooth'});
+              e.target.reset();
+              setStatus('sent');
             },
             (error) => {
               console.log('FAILED...', error.text);
-              alert('Email failed to send. Please try again later.')
+              setStatus('error');
             },
           );
       };
 
   return (
-    <section id='contactPage'>
-        <div id='clients'>
-            <h1 className='sectionTitle'>Work Experience</h1>
-            <p className='sectionLead'>I have had the opportunity to work with the following companies:</p>
-            <div className='timeline' ref={timeline}>
-                <span className='timelineRail' aria-hidden='true'>
-                    <span className='timelineFill' ref={fill}></span>
-                </span>
-                <ol className='timelineList'>
-                    {experiences.map((exp) => (
-                        <li key={exp.company} className={exp.current ? 'timelineItem current' : 'timelineItem'}>
-                            <article className='experience card'>
-                                <div className='experienceHead'>
-                                    <img src={exp.logo} alt='' className='clientImg' />
-                                    {exp.current && <span className='nowBadge'>Now</span>}
-                                </div>
-                                <div className='experienceText'>
-                                    <h2>{exp.company}</h2>
-                                    <h3>{exp.role}</h3>
-                                    <span className='experienceDates mobileOnly'>{exp.dates}</span>
-                                    <p>{exp.text}</p>
-                                    <p className='skills'>Skills:</p>
-                                    <ul>
-                                        {exp.skills.map((skill) => <li key={skill}>{skill}</li>)}
-                                    </ul>
-                                </div>
-                            </article>
-                            <span className='timelineDot' aria-hidden='true'></span>
-                            <span className='timelineDate'>{exp.dates}</span>
-                        </li>
-                    ))}
-                </ol>
-            </div>
-        </div>
-        <div id='contact'>
-            <h1 className='sectionTitle'>Contact me</h1>
-            <form ref={form} className='contactForm' onSubmit={sendEmail}>
-                <input type='text' className='name' name='name' placeholder='Your Name' required/>
-                <input type='email' className='email' name='email' placeholder='Your Email' required/>
-                <textarea className='msg' name='message' rows='5' placeholder='Your Message' required></textarea>
-                <button type='submit' value='Send' className='btn btnPrimary submitBtn'>Submit</button>
-            </form>
+    <>
+    <section id='clients'>
+        <header className='sectionHead'>
+            <h2 className='sectionTitle'>Experience</h2>
+            <p className='comment'>newest first</p>
+        </header>
+        <div className='timeline' ref={timeline}>
+            <span className='timelineRail' aria-hidden='true'>
+                <span className='timelineFill' ref={fill}></span>
+            </span>
+            <ol className='timelineList'>
+                {experiences.map((exp) => (
+                    <li key={exp.company} className={exp.current ? 'timelineItem current' : 'timelineItem'}>
+                        <article className='experience card'>
+                            <div className='experienceHead'>
+                                <img src={exp.logo} alt='' className='clientImg' />
+                                {exp.current && <span className='nowLabel'>current role</span>}
+                            </div>
+                            <div className='experienceText'>
+                                <h3>{exp.company}</h3>
+                                <p className='experienceRole'>{exp.role}</p>
+                                <p className='comment mobileOnly'>{exp.dates}</p>
+                                <p>{exp.text}</p>
+                                <ul aria-label='Skills'>
+                                    {exp.skills.map((skill) => <li key={skill}>{skill}</li>)}
+                                </ul>
+                            </div>
+                        </article>
+                        <span className='timelineDot' aria-hidden='true'></span>
+                        <span className='timelineDate'>{exp.dates}</span>
+                    </li>
+                ))}
+            </ol>
         </div>
     </section>
+    <section id='contact'>
+        <header className='sectionHead'>
+            <h2 className='sectionTitle'>Get in touch</h2>
+            <p className='comment'>goes straight to my inbox</p>
+        </header>
+        <form ref={form} className='contactForm' onSubmit={sendEmail}>
+            <label>
+                <span>Name</span>
+                <input type='text' name='name' autoComplete='name' placeholder='Your name' required/>
+            </label>
+            <label>
+                <span>Email</span>
+                <input type='email' name='email' autoComplete='email' placeholder='email@example.com' required/>
+            </label>
+            <label className='fullWidth'>
+                <span>Message</span>
+                <textarea name='message' rows='5' placeholder='What would you like to talk about?' required></textarea>
+            </label>
+            <div className='formFoot fullWidth'>
+                <button type='submit' className='btn btnPrimary' disabled={status === 'sending'}>
+                    {status === 'sending' ? 'Sending…' : 'Send message'}
+                </button>
+                <p className={`formStatus ${status}`} role='status'>{statusText[status]}</p>
+            </div>
+        </form>
+    </section>
+    </>
   )
 }
 

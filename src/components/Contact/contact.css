@@ -2,7 +2,6 @@
 .timeline {
     position: relative;
     max-width: 64rem;
-    margin: 0 auto 6rem;
 }
 
 .timelineRail {
@@ -11,7 +10,6 @@
     bottom: 0;
     left: 7px;
     width: 2px;
-    border-radius: 2px;
     background: var(--border);
 }
 
@@ -19,9 +17,7 @@
 .timelineFill {
     position: absolute;
     inset: 0;
-    border-radius: inherit;
-    background: linear-gradient(var(--accent-text), var(--accent-2));
-    box-shadow: 0 0 12px rgba(167, 139, 250, 0.5);
+    background: var(--accent);
     transform: scaleY(0);
     transform-origin: top;
 }
@@ -47,37 +43,21 @@
     border-radius: 50%;
     background: var(--bg);
     border: 2px solid var(--border-strong);
-    transition: background-color 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
+    transition: background-color 300ms ease, border-color 300ms ease;
 }
 
 .passed .timelineDot {
-    background: var(--accent-text);
-    border-color: var(--accent-text);
-    box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.15), 0 0 16px rgba(167, 139, 250, 0.6);
+    background: var(--accent);
+    border-color: var(--accent);
 }
 
-/* current role: a ring keeps pinging out of the dot */
-.current .timelineDot::after {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    border-radius: 50%;
-    border: 2px solid var(--accent-text);
-    animation: ping 2s var(--ease-out) infinite;
-}
-
-@keyframes ping {
-    from { transform: scale(1); opacity: 0.8; }
-    to { transform: scale(2.6); opacity: 0; }
+/* static ring marks the current role */
+.current .timelineDot {
+    box-shadow: 0 0 0 4px var(--bg), 0 0 0 5px var(--accent);
 }
 
 .timelineDate {
     display: none;
-}
-
-.experienceDates {
-    font-size: 0.85rem;
-    color: var(--muted);
 }
 
 @media (min-width: 900px) {
@@ -110,10 +90,11 @@
     .timelineDate {
         display: block;
         position: absolute;
-        top: 1.75rem;
+        top: 1.85rem;
         left: calc(100% + 3rem);
         white-space: nowrap;
-        font-weight: 500;
+        font-family: var(--mono);
+        font-size: 0.875rem;
         color: var(--muted);
         transition: color 300ms ease;
     }
@@ -135,7 +116,7 @@
 .experience {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.25rem;
     padding: 1.75rem;
 }
 
@@ -147,23 +128,20 @@
 }
 
 .clientImg {
-    height: 3rem;
+    height: 2.75rem;
     width: auto;
     max-width: 9rem;
     object-fit: contain;
     object-position: left;
+    /* brand logos are dark navy; white keeps them visible on the dark card */
+    filter: brightness(0) invert(1);
+    opacity: 0.9;
 }
 
-.nowBadge {
-    padding: 0.15rem 0.65rem;
-    border-radius: 999px;
-    border: 1px solid rgba(167, 139, 250, 0.35);
-    background: rgba(139, 92, 246, 0.15);
-    color: var(--accent-text);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
+.nowLabel {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--accent);
 }
 
 .experienceText {
@@ -172,81 +150,119 @@
     gap: 0.75rem;
 }
 
-.experienceText > h2 {
+.experienceText > h3 {
     font-size: 1.3rem;
     font-weight: 600;
     line-height: 1.2;
     letter-spacing: -0.02em;
 }
 
-.experienceText > h3 {
+.experienceRole {
     margin-top: -0.5rem;
-    font-size: 0.95rem;
     font-weight: 500;
-    color: var(--accent-text);
+    color: var(--text);
 }
 
-.experienceText > p {
+.experienceText > p:not([class]) {
     color: var(--muted);
     font-size: 0.95rem;
-}
-
-.skills {
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--muted);
 }
 
 .experienceText > ul {
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
+    margin-top: 0.25rem;
     list-style: none;
 }
 
 .experienceText li {
-    font-size: 0.8rem;
-    padding: 0.2rem 0.65rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
     border: 1px solid var(--border);
-    border-radius: 999px;
-    background: var(--surface);
-}
-
-.contactForm {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    max-width: 36rem;
-    margin: 2rem auto 0;
-}
-
-.name, .email, .msg {
-    width: 100%;
-    padding: 0.85rem 1rem;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 0.75rem;
-    transition: border-color 150ms ease, background-color 150ms ease;
-}
-
-.msg {
-    resize: vertical;
-}
-
-.name::placeholder, .email::placeholder, .msg::placeholder {
+    border-radius: 4px;
     color: var(--muted);
 }
 
-.name:focus, .email:focus, .msg:focus {
-    outline: none;
-    border-color: var(--accent-text);
-    background: var(--surface-hover);
+/* Contact: heading left, form right on wide screens */
+.contactForm {
+    display: grid;
+    gap: 1rem;
 }
 
-.submitBtn {
-    align-self: center;
-    margin-top: 1rem;
-    padding: 0.8rem 3rem;
+.contactForm label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.contactForm label > span {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+
+.contactForm input,
+.contactForm textarea {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    font-size: 1rem; /* 16px stops iOS zooming on focus */
+    background: var(--surface);
+    border: 1px solid var(--border-input);
+    border-radius: 8px;
+    transition: border-color 150ms ease;
+}
+
+.contactForm textarea {
+    resize: vertical;
+}
+
+.contactForm ::placeholder {
+    color: var(--muted);
+}
+
+.contactForm input:focus-visible,
+.contactForm textarea:focus-visible {
+    outline-offset: 0;
+    border-color: var(--accent);
+}
+
+.formFoot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.formStatus {
+    font-size: 0.95rem;
+    color: var(--muted);
+}
+
+.formStatus.sent {
+    color: var(--text);
+}
+
+.formStatus.error {
+    color: #ff8f80;
+}
+
+@media (min-width: 720px) {
+    .contactForm {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .fullWidth {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (min-width: 900px) {
+    #contact {
+        display: grid;
+        grid-template-columns: 18rem 1fr;
+        gap: 4rem;
+    }
 }

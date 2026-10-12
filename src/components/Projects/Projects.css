@@ -1,43 +1,67 @@
-.projectsGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
-    gap: 1.5rem;
+.projectList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
 }
 
 .projectCard {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     overflow: hidden;
 }
 
 .projectImage {
     width: 100%;
-    height: 180px;
+    height: 11rem;
     object-fit: cover;
     border-bottom: 1px solid var(--border);
 }
 
 .projectContent {
-    flex: 1;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 0.75rem;
-    padding: 1.25rem;
+    padding: 1.5rem;
 }
 
 .projectTitle {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 600;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
+}
+
+.projectTitle + .comment {
+    margin-top: -0.5rem;
 }
 
 .projectDesc {
+    max-width: 38rem;
     color: var(--muted);
-    font-size: 0.95rem;
 }
 
 .projectButtons {
     margin-top: auto;
+    padding-top: 0.5rem;
     display: flex;
+    flex-wrap: wrap;
     gap: 0.75rem;
+}
+
+/* wide: image beside the text, so each project reads as a row */
+@media (min-width: 720px) {
+    .projectCard {
+        grid-template-columns: 17rem 1fr;
+    }
+
+    .projectImage {
+        height: 100%;
+        min-height: 12rem;
+        border-bottom: 0;
+        border-right: 1px solid var(--border);
+    }
+
+    .projectContent {
+        padding: 1.75rem 2rem;
+    }
 }

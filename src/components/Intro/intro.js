@@ -1,7 +1,6 @@
 import React from 'react'
 import './intro.css'
-import briefcase from '../../assets/briefcase.png'
-import {ReactTyped} from 'react-typed'
+import {Link} from 'react-scroll'
 import me from '../../assets/me.jpg'
 import cv from '../../assets/Pavlo_CV.pdf'
 
@@ -9,16 +8,18 @@ const Intro = () => {
   return (
     <section id='intro'>
         <div className='introContent'>
-            <span className='hello'>Hello,</span>
-            <span className='introText'>I am <span className='introName'>Pavlo</span><br/>
-            <span className='changingText'>I'm a <ReactTyped strings={["Developer", "Programmer", "Software Engineer"]} typeSpeed={80} backSpeed={80} loop/></span></span>
-            <p className='introParagraph'>I am a passionate programmer looking to further show my skills in the developer world.<br/>I am eager to take on multiple challenges and contribute as much as I can for the benefit of everyone.</p><p className='introParagraph'>How is this website being hosted? <span className='rainbowText'>Self-hosting</span>!</p>
-            <a href={cv} target="_blank" className='btn btnPrimary' rel="noreferrer">
-              <img src={briefcase} alt='' className='btnIcon' />
-              Check out my CV!
-            </a>
+            <p className='comment'>software engineer, rome</p>
+            <h1 className='introName'>Pavlo Nazarchuk</h1>
+            <p className='introLead'>
+              Software Development Engineer at <strong>Expedia Group</strong>. I build backend services in
+              Kotlin and Python, and the CI/CD pipelines that ship them.
+            </p>
+            <div className='introActions'>
+              <a href={cv} target='_blank' rel='noreferrer' className='btn btnPrimary'>Read my CV (PDF)</a>
+              <Link href='#contact' to='contact' smooth={true} offset={-80} duration={700} className='btn'>Send me a message</Link>
+            </div>
         </div>
-        <img src={me} alt='' className='backImg'></img>
+        <img src={me} alt='Pavlo Nazarchuk' className='introPhoto' />
     </section>
   )
 }

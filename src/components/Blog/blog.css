@@ -1,0 +1,154 @@
+.blog {
+    min-height: calc(100svh - var(--nav-height));
+    max-width: 48rem;
+}
+
+.blogState {
+    color: var(--muted);
+}
+
+.backLink {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    margin-bottom: 2rem;
+    font-family: var(--mono);
+    font-size: 0.875rem;
+    color: var(--muted);
+    transition: color 150ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .backLink:hover {
+        color: var(--text);
+    }
+}
+
+/* post list: hairlines only between entries */
+.postList {
+    list-style: none;
+}
+
+.postList li + li {
+    border-top: 1px solid var(--border);
+}
+
+.postLink {
+    display: grid;
+    gap: 0.4rem;
+    padding: 1.5rem 0;
+}
+
+.postList li:first-child .postLink {
+    padding-top: 0;
+}
+
+.postLink h2 {
+    font-size: 1.35rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    transition: color 150ms ease;
+}
+
+.postLink p {
+    color: var(--muted);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .postLink:hover h2 {
+        color: var(--accent);
+    }
+}
+
+/* the article */
+.postHead {
+    margin-bottom: 2.5rem;
+}
+
+.postTitle {
+    margin-top: 0.75rem;
+    font-size: clamp(2rem, 6vw, 3.25rem);
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+}
+
+.prose {
+    font-size: 1.075rem;
+    line-height: 1.75;
+    color: #d4d4d8;
+}
+
+.prose > * + * {
+    margin-top: 1.25em;
+}
+
+.prose h2, .prose h3 {
+    margin-top: 2em;
+    color: var(--text);
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+}
+
+.prose h2 { font-size: 1.6rem; }
+.prose h3 { font-size: 1.25rem; }
+
+.prose a {
+    color: var(--text);
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-underline-offset: 3px;
+}
+
+.prose strong {
+    color: var(--text);
+    font-weight: 600;
+}
+
+.prose ul, .prose ol {
+    padding-left: 1.4em;
+}
+
+.prose li + li {
+    margin-top: 0.4em;
+}
+
+.prose blockquote {
+    padding-left: 1.25em;
+    border-left: 2px solid var(--border-strong);
+    color: var(--muted);
+}
+
+.prose code {
+    font-family: var(--mono);
+    font-size: 0.9em;
+    padding: 0.1em 0.35em;
+    border-radius: 4px;
+    background: var(--surface);
+}
+
+/* long code lines scroll inside the block, never the page */
+.prose pre {
+    overflow-x: auto;
+    padding: 1.1rem 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    line-height: 1.55;
+}
+
+.prose pre code {
+    padding: 0;
+    background: none;
+    font-size: 0.875rem;
+}
+
+.prose img {
+    border-radius: 8px;
+}
+
+.prose hr {
+    border: 0;
+    border-top: 1px solid var(--border);
+}

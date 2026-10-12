@@ -1,0 +1,14 @@
+/* .App is the positioned parent, so the canvas spans the full page height */
+.App {
+    position: relative;
+}
+
+.dither {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    image-rendering: pixelated;
+}
