@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Pavlo Nazarchuk</title>
+    <script>
+      // GitHub Pages serves this for paths it has no file for, like /blog/my-post.
+      // Send the path to the app as /?/blog/my-post; index.html restores it (spa-github-pages pattern).
+      var l = window.location;
+      l.replace(
+        l.protocol + '//' + l.host + '/?/' +
+        l.pathname.slice(1).replace(/&/g, '~and~') +
+        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+        l.hash
+      );
+    </script>
+  </head>
+  <body></body>
+</html>
