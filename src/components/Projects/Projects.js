@@ -24,6 +24,7 @@ const projects = [
   {
     title: 'ARM Assembly Hangman',
     image: hangman,
+    imagePosition: 'top left',
     text: 'Hangman written in ARM assembly. My first assembly project.',
     links: [{ label: 'Source on GitHub', icon: github, href: 'https://github.com/PavloNa/ARM-Assembly-Hangman/tree/main' }],
   },
@@ -39,7 +40,7 @@ const Projects = () => {
         <ul className='projectList'>
           {projects.map((p) => (
             <li key={p.title} className='projectCard card'>
-              <img src={p.image} alt='' className='projectImage' />
+              <img src={p.image} alt='' className='projectImage' style={{ objectPosition: p.imagePosition }} />
               <div className='projectContent'>
                 <h3 className='projectTitle'>{p.title}</h3>
                 {p.note && <p className='comment'>{p.note}</p>}
