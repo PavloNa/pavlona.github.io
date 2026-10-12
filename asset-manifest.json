@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/static/css/main.28b789a6.css",
-    "main.js": "/static/js/main.8542491f.js",
+    "main.js": "/static/js/main.c0e8b851.js",
     "static/media/me.jpg": "/static/media/me.94b4f513566963e6be4a.jpg",
+    "static/media/minutes_generator.png": "/static/media/minutes_generator.a68bb6e24f45088cf146.png",
     "static/media/sky.png": "/static/media/sky.b7b698b8556a865e9854.png",
     "static/media/medner.png": "/static/media/medner.108bdbd976bd3b20cc52.png",
     "static/media/Pavlo_CV.pdf": "/static/media/Pavlo_CV.abb36918f48031e01805.pdf",
-    "static/media/minutes_generator.png": "/static/media/minutes_generator.7bfd86bc1f7665123c8b.png",
     "static/media/logo.png": "/static/media/logo.65d40c7f0fee78c987ab.png",
     "static/media/hugging.png": "/static/media/hugging.aab62ef3c472023848ee.png",
     "static/media/expedia.webp": "/static/media/expedia.065f8f70fdcee1e94736.webp",
@@ -16,10 +16,10 @@
     "static/media/freedom-paradigm.md": "/static/media/freedom-paradigm.81439a4d9bd39c1be7be.md",
     "index.html": "/index.html",
     "main.28b789a6.css.map": "/static/css/main.28b789a6.css.map",
-    "main.8542491f.js.map": "/static/js/main.8542491f.js.map"
+    "main.c0e8b851.js.map": "/static/js/main.c0e8b851.js.map"
   },
   "entrypoints": [
     "static/css/main.28b789a6.css",
-    "static/js/main.8542491f.js"
+    "static/js/main.c0e8b851.js"
   ]
 }
