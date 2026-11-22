@@ -5,9 +5,17 @@ import minutes_generator from '../../assets/minutes_generator.png'
 import hugging from '../../assets/hugging.png'
 import medner from '../../assets/medner.png'
 import hangman from '../../assets/hangman.png'
+import payplot from '../../assets/payplot.webp'
 
 // Add a project by adding an entry here
 const projects = [
+  {
+    title: 'Payplot',
+    note: 'launching soon',
+    image: payplot,
+    text: 'Plans your money month by month and shows what a raise, a new job or a move to another city leaves you each month. Pay estimates for jobs and cities come from public job ads and official statistics, refreshed weekly.',
+    links: [{ label: 'payplot.pavlonaz.com', href: 'https://payplot.pavlonaz.com' }],
+  },
   {
     title: 'Minutes Generator',
     image: minutes_generator,
@@ -48,7 +56,7 @@ const Projects = () => {
                 <div className='projectButtons'>
                   {p.links.map((link) => (
                     <a key={link.href} className='btn' href={link.href} target='_blank' rel='noreferrer'>
-                      <img src={link.icon} alt='' className='btnIcon' /> {link.label}
+                      {link.icon && <img src={link.icon} alt='' className='btnIcon' />} {link.label}
                     </a>
                   ))}
                 </div>
