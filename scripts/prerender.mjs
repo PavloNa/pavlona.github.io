@@ -4,13 +4,14 @@
 import { readFileSync, writeFileSync, readdirSync, mkdirSync } from 'node:fs'
 import { parse } from '../src/blog/frontmatter.js'
 
-const SITE = 'https://pavlona.github.io'
+const SITE = 'https://pavlonaz.com'
 const shell = readFileSync('build/index.html', 'utf8')
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
-const page = (title, description) => shell
+// Every page names its address on pavlonaz.com, so a copy served elsewhere (the old pavlona.github.io) counts as a duplicate.
+const page = (title, description, path) => shell
   .replace(/<title>.*?<\/title>/, `<title>${esc(title)}</title>`)
-  .replace(/<meta name="description" content=".*?"\s*\/?>/, `<meta name="description" content="${esc(description)}"/>`)
+  .replace(/<meta name="description" content=".*?"\s*\/?>/, `<meta name="description" content="${esc(description)}"/><link rel="canonical" href="${SITE}${path}"/>`)
 
 const posts = readdirSync('src/posts')
   .filter((f) => f.endsWith('.md') && !f.startsWith('_'))
@@ -21,8 +22,10 @@ const posts = readdirSync('src/posts')
 
 // /blog -> build/blog/index.html; /blog/<slug> -> build/blog/<slug>.html (Pages serves it without the .html)
 mkdirSync('build/blog', { recursive: true })
-writeFileSync('build/blog/index.html', page('Blog · Pavlo Nazarchuk', 'Writing by Pavlo Nazarchuk, software engineer.'))
-posts.forEach((p) => writeFileSync(`build/blog/${p.slug}.html`, page(`${p.title} · Pavlo Nazarchuk`, p.summary || p.title)))
+writeFileSync('build/blog/index.html', page('Blog · Pavlo Nazarchuk', 'Writing by Pavlo Nazarchuk, software engineer.', '/blog/'))
+posts.forEach((p) => writeFileSync(`build/blog/${p.slug}.html`, page(`${p.title} · Pavlo Nazarchuk`, p.summary || p.title, `/blog/${p.slug}`)))
+// The home page keeps its own title and description; it only gains the canonical link.
+writeFileSync('build/index.html', shell.replace(/(<meta name="description" content=".*?"\s*\/?>)/, `$1<link rel="canonical" href="${SITE}/"/>`))
 
 const urls = [
   { loc: `${SITE}/` },

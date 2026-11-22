@@ -2,4 +2,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://pavlona.github.io/sitemap.xml
+Sitemap: https://pavlonaz.com/sitemap.xml
